@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แผนงาน Sport · Core Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-50: #f5f0ff;
+    --purple-100: #ede5ff;
+    --purple-200: #d8c8ff;
+    --purple-300: #bfa0ff;
+    --purple-400: #a370f7;
+    --purple-500: #8b46f0;
+    --purple-600: #7028d4;
+    --purple-700: #5a1fb5;
+    --purple-800: #461a8c;
+    --purple-900: #2e0f62;
+    --cat-black: #1a1a2e;
+    --cat-eye: #8fa919;
+    --gold: #f59e0b;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--purple-50);
+    color: var(--purple-900);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ─── floating sports icons ─── */
+  .sports-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .sport-float {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.07;
+    animation: floatSport linear infinite;
+  }
+
+  @keyframes floatSport {
+    0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.07; }
+    90%  { opacity: 0.07; }
+    100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--purple-700) 0%, var(--purple-900) 60%, #1a0a40 100%);
+    padding: 3rem 2rem 5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(163,112,247,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(139,70,240,0.2) 0%, transparent 50%);
+  }
+
+  .hero-stars {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                      radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.3) 0%, transparent 100%),
+                      radial-gradient(1.5px 1.5px at 85% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+                      radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                      radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+                      radial-gradient(2px 2px at 70% 70%, rgba(255,255,255,0.15) 0%, transparent 100%);
+  }
+
+  .hero-badge {
+    position: relative;
+    display: inline-block;
+    font-family: 'Kanit', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--purple-200);
+    margin-bottom: 1rem;
+    backdrop-filter: blur(4px);
+  }
+
+  .hero-title {
+    position: relative;
+    font-family: 'Kanit', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero-title span {
+    color: var(--purple-300);
+  }
+
+  .hero-sub {
+    position: relative;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+  }
+
+  /* ─── Tug of war ─── */
+  .tug-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 1rem auto 0;
+    max-width: 500px;
+    height: 100px;
+    user-select: none;
+  }
+
+  .rope {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    z-index: 2;
+  }
+
+  .rope-segment {
+    width: 18px;
+    height: 8px;
+    border-radius: 4px;
+    background: #c9a45a;
+    border: 1.5px solid #9a7b3a;
+    flex-shrink: 0;
+    transition: none;
+  }
+
+  .rope-segment:nth-child(odd) { background: #d4af6a; }
+
+  .rope-knot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #e74c3c;
+    border: 2.5px solid #c0392b;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 3;
+    transition: left 0.05s;
+  }
+
+  .rope-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 240px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  /* ─── SVG cats ─── */
+  .cat-left, .cat-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    transition: left 0.05s, right 0.05s;
+  }
+
+  .cat-left { left: 30px; }
+  .cat-right { right: 30px; }
+
+  .cat-svg { width: 72px; height: 80px; }
+
+  /* rope motion */
+  .rope-wrapper { animation: ropeShift 1.8s ease-in-out infinite alternate; }
+  .cat-left  { animation: catLeftShift 1.8s ease-in-out infinite alternate; }
+  .cat-right { animation: catRightShift 1.8s ease-in-out infinite alternate; }
+
+  @keyframes ropeShift {
+    0%   { left: calc(50% - 140px); }
+    100% { left: calc(50% - 100px); }
+  }
+  @keyframes catLeftShift {
+    0%   { left: 10px; }
+    100% { left: 40px; }
+  }
+  @keyframes catRightShift {
+    0%   { right: 40px; }
+    100% { right: 10px; }
+  }
+
+  .tug-label {
+    position: absolute;
+    bottom: -4px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ─── JD pills ─── */
+  .jd-section {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 1.5rem 2rem;
+    background: white;
+    border-bottom: 2px solid var(--purple-100);
+  }
+
+  .jd-pill {
+    font-family: 'Kanit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 16px;
+    border-radius: 99px;
+    background: var(--purple-100);
+    color: var(--purple-700);
+    border: 1.5px solid var(--purple-200);
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── Main layout ─── */
+  .main {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ─── Part headers ─── */
+  .part-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .part-badge {
+    font-family: 'Kanit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 18px;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .part-badge.p1 { background: var(--purple-600); color: white; }
+  .part-badge.p2 { background: #16a34a; color: white; }
+
+  .part-title {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--purple-900);
+  }
+
+  /* ─── Phase label ─── */
+  .phase-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .phase-text {
+    font-family: 'Kanit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 3px 12px;
+    border-radius: 99px;
+    letter-spacing: 0.04em;
+  }
+
+  .phase-text.prep { background: var(--purple-100); color: var(--purple-700); }
+  .phase-text.day  { background: #fef3c7; color: #92400e; }
+  .phase-text.eval { background: #d1fae5; color: #065f46; }
+  .phase-text.collab { background: #e0e7ff; color: #3730a3; }
+
+  .phase-line { flex: 1; height: 1px; background: var(--purple-200); }
+
+  /* ─── Cards ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 0.5rem;
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.1rem 1.1rem;
+    border: 1.5px solid var(--purple-100);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-400), var(--purple-600));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(112,40,212,0.12);
+    border-color: var(--purple-300);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-emoji { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+  .card-head { font-family: 'Kanit', sans-serif; font-size: 14px; font-weight: 600; color: var(--purple-800); margin-bottom: 4px; }
+  .card-body { font-size: 13px; color: #6b7280; line-height: 1.6; }
+
+  /* collab cards */
+  .collab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .collab-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    border: 1.5px solid #c7d2fe;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .collab-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .collab-icon.purple { background: var(--purple-100); }
+  .collab-icon.green  { background: #d1fae5; }
+  .collab-icon.blue   { background: #dbeafe; }
+
+  .collab-label { font-family: 'Kanit', sans-serif; font-size: 13px; font-weight: 600; color: var(--purple-800); margin-bottom: 2px; }
+  .collab-desc  { font-size: 12px; color: #6b7280; line-height: 1.5; }
+
+  /* ─── Divider ─── */
+  .divider {
+    height: 1px;
+    background: var(--purple-200);
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .divider::after {
+    content: '⚽ 🏀 🏐';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--purple-50);
+    padding: 0 12px;
+    font-size: 14px;
+    letter-spacing: 6px;
+  }
+
+  /* ─── Footer cat ─── */
+  .footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'Kanit', sans-serif;
+    font-size: 12px;
+    color: var(--purple-400);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── Decorative corner cats ─── */
+  .corner-cat {
+    position: fixed;
+    bottom: 20px;
+    font-size: 1.8rem;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 0;
+    animation: cornerBob 3s ease-in-out infinite;
+  }
+
+  .corner-cat.left  { left: 16px; animation-delay: 0s; }
+  .corner-cat.right { right: 16px; animation-delay: 1.5s; }
+
+  @keyframes cornerBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* paw print scattered */
+  .paw {
+    position: fixed;
+    font-size: 1rem;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── KPI Section ─── */
+  .kpi-section {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--purple-900) 0%, #1a0a40 100%);
+    padding: 3rem 1.5rem 3.5rem;
+    margin-top: 0;
+  }
+
+  .kpi-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .kpi-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .kpi-cat {
+    font-size: 2.5rem;
+    animation: cornerBob 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .kpi-tag {
+    font-family: 'Kanit', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-300);
+    margin-bottom: 4px;
+  }
+
+  .kpi-title {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .kpi-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .kpi-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.1rem 1.2rem;
+    backdrop-filter: blur(6px);
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .kpi-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .kpi-card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .kpi-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .kpi-meta { flex: 1; }
+
+  .kpi-name {
+    font-family: 'Kanit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .kpi-desc {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  .kpi-pct {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  .kpi-bar-bg {
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .kpi-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 99px;
+    animation: barGrow 1.2s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes barGrow {
+    from { width: 0%; }
+    to   { width: var(--target); }
+  }
+
+  .kpi-foot {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .kpi-chip {
+    font-family: 'Kanit', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 99px;
+    letter-spacing: 0.03em;
+  }
+
+  .kpi-chip.purple { background: rgba(163,112,247,0.25); color: #c4a0ff; }
+  .kpi-chip.yellow { background: rgba(251,191,36,0.2); color: #fde68a; }
+  .kpi-chip.green  { background: rgba(74,222,128,0.2); color: #86efac; }
+  .kpi-chip.red    { background: rgba(248,113,113,0.2); color: #fca5a5; }
+  .kpi-chip.indigo { background: rgba(129,140,248,0.2); color: #a5b4fc; }
+  .kpi-chip.teal   { background: rgba(45,212,191,0.2); color: #99f6e4; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1rem 4rem; }
+    .tug-container { transform: scale(0.85); }
+    .card-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating sports -->
+<div class="sports-bg" id="sportsBg"></div>
+
+<!-- Corner paw prints -->
+<div class="paw" style="top:15%;left:3%;transform:rotate(-20deg)">🐾</div>
+<div class="paw" style="top:35%;right:2%;transform:rotate(15deg)">🐾</div>
+<div class="paw" style="top:55%;left:2%;transform:rotate(10deg)">🐾</div>
+<div class="paw" style="top:75%;right:4%;transform:rotate(-10deg)">🐾</div>
+<div class="paw" style="bottom:20%;left:5%;transform:rotate(25deg)">🐾</div>
+
+<!-- Corner cats -->
+<div class="corner-cat left">🐱</div>
+<div class="corner-cat right">🐱</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-badge">Core Team · แผนงาน 1 ปี</div>
+  <h1 class="hero-title">ตำแหน่ง <span>Sport</span> 🏆</h1>
+  <p class="hero-sub">CBS Sports Group · แบ่งการทำงาน 2 Part ตาม Sports Day</p>
+
+  <!-- Tug of War Animation -->
+  <div class="tug-container">
+    <!-- Left cat (pulling left) -->
+    <div class="cat-left">
+      <svg class="cat-svg" viewBox="0 0 72 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- body -->
+        <ellipse cx="36" cy="55" rx="20" ry="17" fill="#1a1a2e"/>
+        <!-- head -->
+        <ellipse cx="20" cy="32" rx="15" ry="13" fill="#1a1a2e"/>
+        <!-- left ear -->
+        <polygon points="8,22 4,10 15,18" fill="#1a1a2e"/>
+        <polygon points="9,21 7,13 14,18" fill="#5b21b6" opacity="0.5"/>
+        <!-- right ear -->
+        <polygon points="22,20 18,9 28,17" fill="#1a1a2e"/>
+        <polygon points="22,19 19,12 26,17" fill="#5b21b6" opacity="0.5"/>
+        <!-- eyes -->
+        <ellipse cx="15" cy="31" rx="3.5" ry="4" fill="#a3e635"/>
+        <ellipse cx="25" cy="31" rx="3.5" ry="4" fill="#a3e635"/>
+        <ellipse cx="15" cy="31" rx="1.5" ry="2.5" fill="#1a1a2e"/>
+        <ellipse cx="25" cy="31" rx="1.5" ry="2.5" fill="#1a1a2e"/>
+        <!-- nose -->
+        <ellipse cx="20" cy="36" rx="2" ry="1.2" fill="#f472b6"/>
+        <!-- mouth -->
+        <path d="M18 37.5 Q20 39.5 22 37.5" stroke="#f472b6" stroke-width="1" fill="none"/>
+        <!-- whiskers -->
+        <line x1="5" y1="34" x2="16" y2="35.5" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <line x1="5" y1="37" x2="16" y2="37" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <line x1="24" y1="35.5" x2="35" y2="34" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <line x1="24" y1="37" x2="35" y2="37" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <!-- front legs -->
+        <rect x="16" y="66" width="9" height="12" rx="4" fill="#1a1a2e"/>
+        <rect x="28" y="66" width="9" height="12" rx="4" fill="#1a1a2e"/>
+        <!-- tail -->
+        <path d="M55 55 Q68 45 65 35 Q62 28 58 32" stroke="#1a1a2e" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- arm reaching right (pulling rope) -->
+        <path d="M44 52 Q52 48 58 50" stroke="#1a1a2e" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <!-- effort lines -->
+        <line x1="2" y1="28" x2="6" y2="26" stroke="white" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="1" y1="23" x2="5" y2="22" stroke="white" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Rope -->
+    <div class="rope-wrapper" id="ropeWrapper">
+      <div class="rope" id="ropeEl">
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-knot" id="ropeKnot"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+        <div class="rope-segment"></div>
+      </div>
+    </div>
+
+    <!-- Right cat (mirrored, pulling right) -->
+    <div class="cat-right">
+      <svg class="cat-svg" viewBox="0 0 72 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+        <ellipse cx="36" cy="55" rx="20" ry="17" fill="#1a1a2e"/>
+        <ellipse cx="20" cy="32" rx="15" ry="13" fill="#1a1a2e"/>
+        <polygon points="8,22 4,10 15,18" fill="#1a1a2e"/>
+        <polygon points="9,21 7,13 14,18" fill="#5b21b6" opacity="0.5"/>
+        <polygon points="22,20 18,9 28,17" fill="#1a1a2e"/>
+        <polygon points="22,19 19,12 26,17" fill="#5b21b6" opacity="0.5"/>
+        <ellipse cx="15" cy="31" rx="3.5" ry="4" fill="#a3e635"/>
+        <ellipse cx="25" cy="31" rx="3.5" ry="4" fill="#a3e635"/>
+        <ellipse cx="15" cy="31" rx="1.5" ry="2.5" fill="#1a1a2e"/>
+        <ellipse cx="25" cy="31" rx="1.5" ry="2.5" fill="#1a1a2e"/>
+        <ellipse cx="20" cy="36" rx="2" ry="1.2" fill="#f472b6"/>
+        <path d="M18 37.5 Q20 39.5 22 37.5" stroke="#f472b6" stroke-width="1" fill="none"/>
+        <line x1="5" y1="34" x2="16" y2="35.5" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <line x1="5" y1="37" x2="16" y2="37" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <line x1="24" y1="35.5" x2="35" y2="34" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <line x1="24" y1="37" x2="35" y2="37" stroke="white" stroke-width="0.7" opacity="0.6"/>
+        <rect x="16" y="66" width="9" height="12" rx="4" fill="#1a1a2e"/>
+        <rect x="28" y="66" width="9" height="12" rx="4" fill="#1a1a2e"/>
+        <path d="M55 55 Q68 45 65 35 Q62 28 58 32" stroke="#1a1a2e" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M44 52 Q52 48 58 50" stroke="#1a1a2e" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <line x1="2" y1="28" x2="6" y2="26" stroke="white" stroke-width="1.5" opacity="0.4" stroke-linecap="round"/>
+        <line x1="1" y1="23" x2="5" y2="22" stroke="white" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="tug-label">🐾 ชักกะเย้อเย้ๆ เอาA2กวาดทุกถ้วย 🐾</div>
+  </div>
+</header>
+
+<!-- JD Pills -->
+<div class="jd-section">
+  <span class="jd-pill">🔍 ดูแลกิจกรรมกีฬา CBS Sports Group</span>
+  <span class="jd-pill">👟 จัดหานักกีฬา</span>
+  <span class="jd-pill">📡 ประสานงานกับกรุ๊ปอื่น</span>
+  <span class="jd-pill">🏋️ จัดซ้อมกีฬา</span>
+  <span class="jd-pill">💬 สื่อสารดี</span>
+  <span class="jd-pill">⚽ มีความรู้ด้านกีฬา</span>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- PART 1 -->
+  <div class="part-header">
+    <div class="part-badge p1">Part 1</div>
+    <div class="part-title">ก่อน Sports Day และช่วงวันแข่ง</div>
+  </div>
+
+  <div class="phase-label">
+    <div class="phase-text prep">📋 ก่อนงาน — วางแผน & เตรียมทีม</div>
+    <div class="phase-line"></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-emoji">🔍</span>
+      <div class="card-head">ศึกษารูปแบบงาน</div>
+      <div class="card-body">ทำความเข้าใจประเภทกีฬา กติกา และรูปแบบทีมของงาน CBS Sports Group ตั้งแต่เนิ่น ๆ</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">🎯</span>
+      <div class="card-head">จัดหานักกีฬา</div>
+      <div class="card-body">เปิดรับสมัคร คัดเลือก หรือทาบทามสมาชิกในกรุ๊ปให้ครบทีม</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">🤝</span>
+      <div class="card-head">ประสานงานกรุ๊ปอื่น</div>
+      <div class="card-body">ติดต่อกรุ๊ปที่จะรวมทีม จัดการสื่อสารให้ชัดเจน ลดการสับสน</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">🏃</span>
+      <div class="card-head">ดูแล Take care</div>
+      <div class="card-body"> ดูแลให้นักกีฬามีเวลาเตรียมตัวเพียงพอก่อนวันแข่ง</div>
+    </div>
+  </div>
+
+  <div class="phase-label">
+    <div class="phase-text day">⚡ วัน Sports Day — ดูแล & แก้ปัญหาเฉพาะหน้า</div>
+    <div class="phase-line"></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-emoji">✅</span>
+      <div class="card-head">ติดตามนักกีฬา</div>
+      <div class="card-body">ดูแลให้ทุกคนพร้อมลงแข่งขันตรงเวลา รวมตัวได้ตามกำหนด</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">🚨</span>
+      <div class="card-head">แก้ปัญหาเฉพาะหน้า</div>
+      <div class="card-body">รับมือการขาดผู้เล่น สื่อสารผิดพลาด</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">📡</span>
+      <div class="card-head">ประสานงานกลางวัน</div>
+      <div class="card-body">เป็นตัวกลางระหว่างทีมและผู้จัดงาน ให้การแข่งขันราบรื่น</div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider"></div>
+
+  <!-- PART 2 -->
+  <div class="part-header">
+    <div class="part-badge p2">Part 2</div>
+    <div class="part-title">หลัง Sports Day — ประเมินผลและต่อยอด</div>
+  </div>
+
+  <div class="phase-label">
+    <div class="phase-text eval">📊 สรุปและพัฒนา</div>
+    <div class="phase-line"></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-emoji">📊</span>
+      <div class="card-head">สรุปผลการดำเนินงาน</div>
+      <div class="card-body">ทบทวนผลแข่ง การจัดทีม และกระบวนการทำงาน — อะไรดี อะไรต้องปรับปรุง</div>
+    </div>
+    <div class="card">
+      <span class="card-emoji">💡</span>
+      <div class="card-head">คิดกิจกรรมใหม่</div>
+      <div class="card-body">ผลักดันกิจกรรมกีฬาหรือกิจกรรมสร้างความสัมพันธ์ เช่น A2 Running</div>
+    </div>
+  </div>
+
+  <div class="phase-label">
+    <div class="phase-text collab">🤜 สนับสนุนฝ่ายอื่นใน Core Team</div>
+    <div class="phase-line"></div>
+  </div>
+
+  <div class="collab-grid">
+    <div class="collab-card">
+      <div class="collab-icon purple">🫶</div>
+      <div>
+        <div class="collab-label">ร่วมกับฝ่าย Welfare</div>
+        <div class="collab-desc">ช่วยดูแลน้องๆ แบกหนม แบกน้ำ พาน้องกินข้าว </div>
+      </div>
+    </div>
+    <div class="collab-card">
+      <div class="collab-icon green">🎉</div>
+      <div>
+        <div class="collab-label">สนับสนุนฝ่าย Activity</div>
+        <div class="collab-desc"> สร้าง engagement ในกิจกรรมกรุ๊ป</div>
+      </div>
+    </div>
+    <div class="collab-card">
+      <div class="collab-icon blue">⭐</div>
+      <div>
+        <div class="collab-label">ขยายบทบาทกีฬา</div>
+        <div class="collab-desc">เป็นส่วนหนึ่งของการคิดกิจกรรมที่ส่งเสริมความสามัคคีของกรุ๊ปในภาพรวม</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- KPI SECTION -->
+<section class="kpi-section">
+  <div class="kpi-inner">
+    <div class="kpi-header">
+      <div class="kpi-cat">🐱</div>
+      <div>
+        <div class="kpi-tag">Key Performance Indicators</div>
+        <h2 class="kpi-title">ตัวชี้วัดความสำเร็จในงาน</h2>
+        <p class="kpi-sub">เป้าหมายที่ตำแหน่ง Sport ต้องทำให้ได้ตลอด 1 ปีการ</p>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+
+      <!-- KPI 1 -->
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-icon-wrap" style="background:#ede5ff">⚽</div>
+          <div class="kpi-meta">
+            <div class="kpi-name">จัดหานักกีฬาครบทีม</div>
+            <div class="kpi-desc">มีผู้เล่นพร้อมลงแข่งครบทุกประเภทกีฬาก่อนงาน 1 สัปดาห์</div>
+          </div>
+          <div class="kpi-pct" style="color:#7028d4">100%</div>
+        </div>
+        <div class="kpi-bar-bg">
+          <div class="kpi-bar-fill" style="--target:100%;background:linear-gradient(90deg,#a370f7,#7028d4)"></div>
+        </div>
+        <div class="kpi-foot"><span class="kpi-chip purple">Part 1</span> ก่อน Sports Day</div>
+      </div>
+
+      <!-- KPI 2 -->
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-icon-wrap" style="background:#fef9c3">🏋️</div>
+          <div class="kpi-meta">
+            <div class="kpi-name">ดูแลนักกีฬา</div>
+            <div class="kpi-desc">นักกีฬาพอใจในการดูแลมากกว่าเท่ากับ 90% ต่อประเภทกีฬา</div>
+          </div>
+          <div class="kpi-pct" style="color:#b45309">90%</div>
+        </div>
+        <div class="kpi-bar-bg">
+          <div class="kpi-bar-fill" style="--target:90%;background:linear-gradient(90deg,#fbbf24,#d97706)"></div>
+        </div>
+        <div class="kpi-foot"><span class="kpi-chip yellow">Part 1</span> เตรียมความพร้อม</div>
+      </div>
+
+      <!-- KPI 3 -->
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-icon-wrap" style="background:#dcfce7">🤝</div>
+          <div class="kpi-meta">
+            <div class="kpi-name">ประสานงานกรุ๊ปอื่นสำเร็จ</div>
+            <div class="kpi-desc">ติดต่อ-ยืนยันการรวมทีมกับกรุ๊ปที่เกี่ยวข้องก่อนวันแข่ง 1 สัปดาห์</div>
+          </div>
+          <div class="kpi-pct" style="color:#16a34a">100%</div>
+        </div>
+        <div class="kpi-bar-bg">
+          <div class="kpi-bar-fill" style="--target:100%;background:linear-gradient(90deg,#4ade80,#16a34a)"></div>
+        </div>
+        <div class="kpi-foot"><span class="kpi-chip green">Part 1</span> การประสานงาน</div>
+      </div>
+
+      <!-- KPI 4 -->
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-icon-wrap" style="background:#fee2e2">🏆</div>
+          <div class="kpi-meta">
+            <div class="kpi-name">นักกีฬาลงแข่งได้ครบ</div>
+            <div class="kpi-desc">วัน Sports Day — นักกีฬาครบ lineup ทุกประเภท ไม่มีการขาดผู้เล่น</div>
+          </div>
+          <div class="kpi-pct" style="color:#dc2626">100%</div>
+        </div>
+        <div class="kpi-bar-bg">
+          <div class="kpi-bar-fill" style="--target:100%;background:linear-gradient(90deg,#f87171,#dc2626)"></div>
+        </div>
+        <div class="kpi-foot"><span class="kpi-chip red">Part 1</span> วัน Sports Day</div>
+      </div>
+
+      <!-- KPI 5 -->
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-icon-wrap" style="background:#e0e7ff">📊</div>
+          <div class="kpi-meta">
+            <div class="kpi-name">สรุปผลงานภายใน 1 สัปดาห์</div>
+            <div class="kpi-desc">ส่งรายงานสรุปผลการดำเนินงานให้ Head Group ภายใน 7 วันหลังงาน</div>
+          </div>
+          <div class="kpi-pct" style="color:#4338ca">7 วัน</div>
+        </div>
+        <div class="kpi-bar-bg">
+          <div class="kpi-bar-fill" style="--target:85%;background:linear-gradient(90deg,#818cf8,#4338ca)"></div>
+        </div>
+        <div class="kpi-foot"><span class="kpi-chip indigo">Part 2</span> หลัง Sports Day</div>
+      </div>
+
+      <!-- KPI 6 -->
+      <div class="kpi-card">
+        <div class="kpi-card-top">
+          <div class="kpi-icon-wrap" style="background:#f0fdf4">🫶</div>
+          <div class="kpi-meta">
+            <div class="kpi-name">สนับสนุนฝ่ายอื่นๆ</div>
+            <div class="kpi-desc">ร่วมมือกับ Welfare หรือ Activity กิจกรรมหลังจบ Sports Day</div>
+          </div>
+          <div class="kpi-pct" style="color:#15803d">1+</div>
+        </div>
+        <div class="kpi-bar-bg">
+          <div class="kpi-bar-fill" style="--target:60%;background:linear-gradient(90deg,#86efac,#15803d)"></div>
+        </div>
+        <div class="kpi-foot"><span class="kpi-chip teal">Part 2</span> ต่อยอด Core Team</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  🐾 SPORT CORE TEAM · CBS GROUP · 2025–2026 🐾
+</footer>
+
+<script>
+  // ─── Floating sports emojis ───
+  const sports = ['⚽','🏀','🏐','🎾','🏸','🏓','🥊','🏊','🏃','🤸','⛹️','🤾'];
+  const bg = document.getElementById('sportsBg');
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'sport-float';
+    el.textContent = sports[Math.floor(Math.random() * sports.length)];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (14 + Math.random() * 12) + 's';
+    el.style.animationDelay = (Math.random() * -20) + 's';
+    el.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem';
+    bg.appendChild(el);
+  }
+
+  // ─── Tug of war JS animation ───
+  // Knot slides left & right matching rope motion
+  const knot = document.getElementById('ropeKnot');
+  let t = 0;
+  let dir = 1;
+
+  function animateTug() {
+    t += 0.008 * dir;
+    if (t >= 1) { t = 1; dir = -1; }
+    if (t <= 0) { t = 0; dir = 1; }
+
+    // ease in-out
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+    // Knot moves within the rope 
+    const offset = -20 + ease * 40; // -20px to +20px
+    knot.style.transform = `translateX(${offset}px)`;
+
+    requestAnimationFrame(animateTug);
+  }
+
+  animateTug();
+</script>
+</body>
+</html>
